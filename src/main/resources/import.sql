@@ -1,0 +1,14 @@
+INSERT INTO AUTHORITY(id, name) VALUES (1, 'FRONT_READ');
+INSERT INTO AUTHORITY(id, name) VALUES (2, 'FRONT_WRITE');
+INSERT INTO AUTHORITY(id, name) VALUES (3, 'MIDDLE_READ');
+INSERT INTO AUTHORITY(id, name) VALUES (4, 'MIDDLE_WRITE');
+INSERT INTO USER_(id, user_name, password, account_expired, account_locked, credentials_expired, enabled) VALUES (1, 'admin', '$2a$08$qvrzQZ7jJ7oy2p/msL4M0.l83Cd0jNsX6AJUitbgRXGzge4j035ha', FALSE, FALSE, FALSE, TRUE);
+INSERT INTO USER_(id, user_name, password, account_expired, account_locked, credentials_expired, enabled) VALUES (2, 'reader', '$2a$08$dwYz8O.qtUXboGosJFsS4u19LHKW7aCQ0LXXuNlRfjjGKwj5NfKSe', FALSE, FALSE, FALSE, TRUE);
+INSERT INTO USERS_AUTHORITIES(user_id, authority_id) VALUES (1, 1);
+INSERT INTO USERS_AUTHORITIES(user_id, authority_id) VALUES (1, 2);
+INSERT INTO USERS_AUTHORITIES(user_id, authority_id) VALUES (1, 3);
+INSERT INTO USERS_AUTHORITIES(user_id, authority_id) VALUES (1, 4);
+INSERT INTO USERS_AUTHORITIES(user_id, authority_id) VALUES (2, 1);
+INSERT INTO USERS_AUTHORITIES(user_id, authority_id) VALUES (2, 3);
+INSERT INTO OAUTH_CLIENT_DETAILS(client_id, resource_ids, client_secret, scope, authorized_grant_types, authorities, access_token_validity, refresh_token_validity) VALUES('spring-security-oauth2-read-client', 'resource-server-rest-api', '$2a$04$WGq2P9egiOYoOFemBRfsiO9qTcyJtNRnPKNBl5tokP7IP.eZn93km', 'read', 'password,authorization_code,refresh_token,implicit', 'USER', 10800, 2592000);
+INSERT INTO OAUTH_CLIENT_DETAILS(client_id, resource_ids, client_secret, scope, authorized_grant_types, authorities, access_token_validity, refresh_token_validity)   VALUES('spring-security-oauth2-read-write-client', 'resource-server-rest-api', '$2a$04$soeOR.QFmClXeFIrhJVLWOQxfHjsJLSpWrU1iGxcMGdu.a5hvfY4W', 'read,write', 'password,authorization_code,refresh_token,implicit', 'USER', 10800, 2592000);
