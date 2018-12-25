@@ -1,9 +1,7 @@
 package com.example.tyco.controller.user;
 
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,7 +25,6 @@ public class UserRestController {
 	@GetMapping("/resource/tyCoUser")
 	public JsonResultMessage getTyCoUserInformation() {
 		String name = auth.getAuthentication().getName();
-		System.out.println(name);
 		TyCoUser user = tyCoUserService.getTyCoUserByUserName(name);
 		
 		if(user == null) {

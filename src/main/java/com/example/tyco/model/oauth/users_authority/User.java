@@ -56,26 +56,31 @@ public class User implements UserDetails{
     @Column(name = "PASSWORD")
 	@Getter
 	@Setter
+	@JsonIgnore
     private String password;
 
     @Column(name = "ACCOUNT_EXPIRED")
 	@Getter
 	@Setter
+	@JsonIgnore
     private boolean accountExpired;
 
     @Column(name = "ACCOUNT_LOCKED")
 	@Getter
 	@Setter
+	@JsonIgnore
     private boolean accountLocked;
 
     @Column(name = "CREDENTIALS_EXPIRED")
 	@Getter
 	@Setter
+	@JsonIgnore
     private boolean credentialsExpired;
 
     @Column(name = "ENABLED")
 	@Getter
 	@Setter
+	@JsonIgnore
     private boolean enabled;
 
     @ManyToMany(fetch = FetchType.LAZY)

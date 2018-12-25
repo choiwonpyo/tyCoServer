@@ -2,19 +2,15 @@ package com.example.tyco.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.CorsUtils;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
 
 @Configuration
-//@EnableAuthorizationServer
 @EnableResourceServer
 public class ResourceOAuthSecurityConfiguration extends ResourceServerConfigurerAdapter{
 
@@ -26,6 +22,16 @@ public class ResourceOAuthSecurityConfiguration extends ResourceServerConfigurer
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
         resources.resourceId(RESOURCE_ID);
+    }
+    @Primary
+    @Bean
+    public RemoteTokenServices tokenService() {
+        RemoteTokenServices tokenService = new RemoteTokenServices();
+        tokenService.setCheckTokenEndpointUrl(
+          "http://localhost:8080/oauth/check_token");
+        tokenService.setClientId("spring-security-oauth2-read-write-client");
+        tokenService.setClientSecret("spring-security-oauth2-read-write-client-password1234");
+        return tokenService;
     }
 
 	@Override

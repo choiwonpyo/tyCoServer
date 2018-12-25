@@ -1,6 +1,4 @@
 package com.example.tyco.config.security;
-
-import javax.servlet.Filter;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +26,6 @@ import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 @EnableAuthorizationServer
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 @Import(ServerSecurityConfig.class)
 public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter{
 
